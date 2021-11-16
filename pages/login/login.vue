@@ -8,7 +8,7 @@
         <u--input v-model="loginData.password"></u--input>
       </u-form-item>
     </u--form>
-    <u-button @click="submit">提交</u-button>
+    <u-button @click="submit">登录</u-button>
   </view>
 </template>
 
@@ -37,12 +37,6 @@ export default {
         });
       });
     },
-  },
-  onShow: function () {
-    uni.showToast({
-      title: "请登录！",
-      icon: "none",
-    });
-  },
+  }
 };
 </script>
