@@ -1,7 +1,11 @@
 <template>
   <view>
-    <u-list>
-      <u-list-item v-for="(item, index) in songList" :key="index">
+    <u-list style="height: 110vh">
+      <u-list-item
+        v-for="(item, index) in songList"
+        :key="index"
+        @click.native="playSong(item.id)"
+      >
         <u-cell :title="item.name">
           <u-avatar
             slot="icon"
@@ -23,13 +27,35 @@ export default {
   data() {
     return {
       songList: [],
+      ids: [],
+      requestIds: [],
     };
   },
-  methods: {},
+  methods: {
+    getRequestIds() {
+      this.requestIds = [];
+      for (let i = 0; i < 20; i++) {
+        this.requestIds.push(this.ids.pop());
+      }
+      return this.requestIds.join(",");
+    },
+    getSongDetail(ids) {
+      getSongDetail({ ids }).then((res) => {
+        this.songList.push(...res.data.songs);
+      });
+    },
+    playSong(songId) {
+      uni.navigateTo({
+        url: `../music/music?songId=${songId}`,
+      });
+    },
+  },
   onLoad(params) {
-    getSongDetail({ ids: params.ids }).then((songList) => {
-      this.songList = songList.data.songs;
-    });
+    this.ids = params.ids.split(",");
+    this.getSongDetail(this.getRequestIds());
+  },
+  onReachBottom() {
+    this.getSongDetail(this.getRequestIds());
   },
 };
 </script>

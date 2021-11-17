@@ -20,9 +20,17 @@
         "navigationBarTitleText": "登录",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/songs/songs",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false,
+        "onReachBottomDistance": 100
+      }
     }
       ,{
-            "path" : "pages/songs/songs",
+            "path" : "pages/music/music",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",

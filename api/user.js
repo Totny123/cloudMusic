@@ -23,3 +23,11 @@ export function getSongDetail(params) {
     params,
   });
 }
+
+export function getSongUrl(params) {
+  return request({
+    method: "get",
+    url: "/song/url",
+    params,
+  });
+}
